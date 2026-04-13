@@ -22,13 +22,21 @@ jobs:
       run: make
 
     - name: Load module
-      run: sudo insmod hello_world.ko
+      run: |
+        sudo insmod hello_world.ko
+        lsmod | grep hello_world
 
     - name: Verify module load
-      run: sudo dmesg | grep "Module started"
+      run: |
+        sudo dmesg | tail -n 20
+        sudo dmesg | grep "Module started"
 
     - name: Unload module
-      run: sudo rmmod hello_world
+      run: |
+        sudo rmmod hello_world
+        ! lsmod | grep hello_world
 
     - name: Verify module unload
-      run: sudo dmesg | grep "Module exited"
+      run: |
+        sudo dmesg | tail -n 20
+        sudo dmesg | grep "Module exited"
