@@ -2,13 +2,13 @@
 #include <linux/module.h>
 
 static int __init hello_world_init(void) {
-  pr_info("Module started");
+  pr_info("Module started\n");
   return 0;
 }
 
 
 static void __exit hello_world_exit(void) {
-  pr_info("Module exited"); 
+  pr_info("Module exited\n"); 
 }
 
 module_init(hello_world_init);
