@@ -20,3 +20,15 @@ jobs:
 
     - name: Compile module
       run: make
+
+    - name: Load module
+      run: sudo insmod hello_world.ko
+
+    - name: Verify module load
+      run: dmesg | grep "Module started"
+
+    - name: Unload module
+      run: sudo rmmod hello_world
+
+    - name: Verify module unload
+      run: dmesg | grep "Module exited"
